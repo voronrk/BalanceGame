@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#0A0A0F">
+    <com.balance.game.GameView android:id="@+id/gameView" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="top" android:layout_marginTop="20dp" android:layout_marginHorizontal="100dp"
+        android:orientation="vertical" android:gravity="center">
+        <ProgressBar android:id="@+id/progressBar" style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent" android:layout_height="12dp"
+            android:max="100" android:progress="0" android:progressDrawable="@drawable/progress_bar" />
+        <TextView android:id="@+id/scoreText" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:text="Score: 0" android:textColor="#FFFFFF" android:textSize="24sp" android:textStyle="bold" />
+    </LinearLayout>
+    <TextView android:id="@+id/gameOverText" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:text="GAME OVER\nTap to Restart"
+        android:textColor="#FF3366" android:textSize="48sp" android:textStyle="bold"
+        android:gravity="center" android:visibility="gone" />
+</FrameLayout>
