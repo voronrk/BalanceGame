@@ -2,7 +2,7 @@ name: Android Build
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ] # Исправлено на master, как у вас
 
 jobs:
   build:
@@ -18,11 +18,21 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Generate Gradle Wrapper (Cloud Fix)
+      run: |
+        if [ ! -f gradlew ]; then
+          echo "gradlew not found. Generating it in the cloud..."
+          curl -sL https://services.gradle.org/distributions/gradle-8.2-bin.zip -o gradle.zip
+          unzip -q gradle.zip
+          ./gradle-8.2/bin/gradle wrapper --gradle-version 8.2
+          rm -rf gradle-8.2 gradle.zip
+          chmod +x gradlew
+        else
+          chmod +x gradlew
+        fi
 
     - name: Build with Gradle
-      run: ./gradlew assembleDebug
+      run: ./gradlew assembleDebug --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
